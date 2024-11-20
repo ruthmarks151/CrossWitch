@@ -41,4 +41,15 @@ fn start() {
         .unwrap();
 
     context.stroke();
+
+    {
+        let context = context.clone();
+        let closure = Closure::<dyn FnMut(_)>::new(move |_event: web_sys::MouseEvent| {
+            context.set_fill_style_str("blue");
+            context.fill_rect(90.0, 65.0, 50.0, 50.0);
+        });
+        let _ =
+            canvas.add_event_listener_with_callback("mousedown", closure.as_ref().unchecked_ref());
+        closure.forget();
+    }
 }
