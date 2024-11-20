@@ -42,7 +42,7 @@ jobs:
       - uses: jetli/trunk-action@v0.1.0
       - uses: jetli/wasm-bindgen-action@v0.1.0
 
-      - run: trunk build --release --public-url ${{ github.event.repository.name }}
+      - run: trunk build --release --public-url "/${{ github.event.repository.name }}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
